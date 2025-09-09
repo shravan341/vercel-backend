@@ -11,7 +11,7 @@ const Favourite = require("./routes/favourite");
 const Cart = require("./routes/cart");
 const Order = require("./routes/order");
 app.use(cors({
-    origin: "https://vercel-frontend-azure-sigma.vercel.app/", // Your Vite frontend URL
+    origin: "https://vercel-frontend-azure-sigma.vercel.app", // Your Vite frontend URL
     credentials: true,
   }));
 app.use(express.json());
