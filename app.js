@@ -10,10 +10,23 @@ const Books = require("./routes/book");
 const Favourite = require("./routes/favourite");
 const Cart = require("./routes/cart");
 const Order = require("./routes/order");
+const allowedOrigins = [
+  "https://vercel-frontend-azure-sigma.vercel.app", // Your Vercel frontend URL
+  // Add more URLs as needed
+];
+
+// CORS configuration with dynamic origin check
 app.use(cors({
-    origin: "https://vercel-frontend-azure-sigma.vercel.app", // Your Vite frontend URL
-    credentials: true,
-  }));
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      // If the origin is in the allowed list or there is no origin (e.g., local dev)
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // Allow credentials (cookies, headers)
+}));
 app.use(express.json());
 //routes
 
